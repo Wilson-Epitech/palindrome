@@ -5,16 +5,22 @@
 ** main
 */
 
+#include "my.h"
+#include "lib.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
 
-int error_handling(int ac, char **av)
+structure_t *init_struct(void)
 {
-    if (ac == 2 && (av[1][0] != '-' || av[1][1] != 'h'))
-        return 84;
-    if (ac > 2 && ac <= 6 && (av[1][0] != '-' ||
-        (av[1][1] != 'n' && av[1][1] != 'p')))
-        return 84;
-    return 0;
+    structure_t *flags = malloc(sizeof(structure_t));
+    flags->flag_n = false;
+    flags->flag_p = false;
+    flags->base = 10;
+    flags->imin = 0;
+    flags->imax = 100;
+    return flags;
 }
 
 int flag_h(int ac, char **av)
@@ -40,12 +46,21 @@ int flag_h(int ac, char **av)
 
 int main(int ac, char **av)
 {
-    if (ac == 1 || ac > 6)
+    structure_t *flags = init_struct();
+    if (ac == 1 || ac > 7)
         return 84;
-    if (error_handling(ac, av) == 84)
+    if (error_handling(ac, av) == 84) {
+        printf("invalid argument\n");
         return 84;
+    }
     if (flag_h(ac, av) == 1)
         return 0;
-    printf("ok\n");
+    parse_args(ac, av, flags);
+    if (flags->flag_n) {
+        if (find_first_palindrome(av[2], flags) == 0)
+            printf("no solution\n");
+    } else {
+        return 18;
+    }
     return 0;
 }

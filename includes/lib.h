@@ -10,7 +10,9 @@
 #ifndef LIB_H_
     #define LIB_H_
 
-    bool is_delim(char c, char *separators);
-    char **my_word_array_delim(char const *str, char *separators);
+    bool is_number(char const *str);
+    char *my_int_to_str(int nb);
+    char *my_revstr(char *str);
+    int is_a_palindrome(char const *str);
 
 #endif /* !LIB_H_ */
