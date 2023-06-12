@@ -8,11 +8,12 @@
 SRC	=	src/main.c 										\
 		src/convert_base.c 								\
 		src/find_first_palindrome.c						\
+		src/palindromic_correspondances.c				\
 		src/error_handling.c							\
 		src/lib/my_revstr.c								\
 		src/lib/my_int_to_str.c							\
 		src/lib/is_number.c								\
-		src/is_a_palindrome.c							\
+		src/is_palindrome.c							\
 
 CC ?= gcc
 

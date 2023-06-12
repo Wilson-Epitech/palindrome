@@ -60,7 +60,7 @@ int main(int ac, char **av)
         if (find_first_palindrome(av[2], flags) == 0)
             printf("no solution\n");
     } else {
-        return 18;
+        palindromic_correspondances(av[2], flags);
     }
     return 0;
 }

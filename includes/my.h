@@ -21,7 +21,8 @@ typedef struct structure_s {
     int error_handling(int ac, char **av);
     int parse_args(int ac, char * const *av, structure_t *flags);
     char *convert_base(int number, int base);
-    int is_a_palindrome(char const *str);
+    bool is_palindrome(const char* str);
     int find_first_palindrome(char *nb_str, structure_t *flags);
+    void palindromic_correspondances(char *nb_str, structure_t *flags);
 
 #endif /* !MY_H_ */

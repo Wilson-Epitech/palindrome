@@ -19,7 +19,7 @@ int find_first_palindrome(char *nb_str, structure_t *flags)
 
     nb_str = convert_base(nb, flags->base);
     while (palindrome == 1) {
-        palindrome = is_a_palindrome(nb_str);
+        palindrome = is_palindrome(nb_str);
         if (iterations > flags->imax)
             break;
         if (palindrome == 0 && iterations >= flags->imin
