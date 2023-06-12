@@ -23,6 +23,8 @@ int my_squareroot_synthesis(int nb)
 
     if (nb < 0)
         return -1;
+    if (nb == 0)
+        return 0;
     while (x - y > 0) {
         x = (x + y) / 2;
         y = nb / x;
