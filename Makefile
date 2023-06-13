@@ -5,6 +5,8 @@
 ## makefile
 ##
 
+CC ?= gcc
+
 SRC	=	src/main.c 										\
 		src/convert_base.c 								\
 		src/find_first_palindrome.c						\
@@ -14,9 +16,20 @@ SRC	=	src/main.c 										\
 		src/lib/convert_binary_decimal.c				\
 		src/lib/my_int_to_str.c							\
 		src/lib/is_number.c								\
-		src/is_palindrome.c							\
+		src/is_palindrome.c								\
 
-CC ?= gcc
+UTSRC = src/main.c										\
+		src/convert_base.c 								\
+		src/find_first_palindrome.c						\
+		src/palindromic_correspondances.c				\
+		src/error_handling.c							\
+		src/lib/my_revstr.c								\
+		src/lib/convert_binary_decimal.c				\
+		src/lib/my_int_to_str.c							\
+		src/lib/is_number.c								\
+		src/is_palindrome.c								\
+
+UTDIR = src/test/unit_test.c
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -32,6 +45,13 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(CPPLAGS) $(CFLAGS)
+
+tests_run:
+	$(CC) $(UTSRC) $(UTDIR) $(CPPFLAGS) --coverage -lcriterion -o unit_tests
+	./unit_tests
+
+tests_clean:
+		$(RM) unit_tests*
 
 clean:
 	$(RM) $(OBJ)

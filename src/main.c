@@ -47,7 +47,7 @@ int flag_h(int ac, char **av)
 int main(int ac, char **av)
 {
     structure_t *flags = init_struct();
-    if (ac == 1 || ac > 7)
+    if (ac == 1 || ac > 9)
         return 84;
     if (error_handling(ac, av) == 84) {
         printf("invalid argument\n");

@@ -10,6 +10,22 @@
 #include <string.h>
 #include <stdlib.h>
 
+static void parse_args_p2(int ac, char * const *av, structure_t *flags)
+{
+    if (ac == 7 && strcmp(av[3], "-imax") == 0 && is_number(av[4]))
+        flags->imax = atoi(av[4]);
+    if (ac >= 7 && strcmp(av[5], "-imin") == 0 && is_number(av[6]))
+        flags->imin = atoi(av[6]);
+    if (ac >= 7 && strcmp(av[5], "-imax") == 0 && is_number(av[6]))
+        flags->imax = atoi(av[6]);
+    if (ac == 9 && strcmp(av[7], "imin") == 0 && is_number(av[8]))
+        flags->imin = atoi(av[8]);
+    if (ac == 9 && strcmp(av[7], "imax") == 0 && is_number(av[8]))
+        flags->imax = atoi(av[8]);
+    if (ac == 9 && is_number(av[8]))
+        flags->base = atoi(av[8]);
+}
+
 int parse_args(int ac, char * const *av, structure_t *flags)
 {
     if (av[1][0] == '-' && av[1][1] == 'n')
@@ -22,29 +38,41 @@ int parse_args(int ac, char * const *av, structure_t *flags)
         flags->imin = atoi(av[4]);
     if (ac == 5 && strcmp(av[3], "-imax") == 0)
         flags->imax = atoi(av[4]);
-    if (ac == 7 && strcmp(av[5], "-imin") == 0 && is_number(av[6]))
-        flags->imin = atoi(av[6]);
-    if (ac == 7 && strcmp(av[5], "-imax") == 0 && is_number(av[6]))
-        flags->imax = atoi(av[6]);
+    if (ac == 7 && strcmp(av[3], "-imin") == 0 && is_number(av[4]))
+        flags->imin = atoi(av[4]);
+    parse_args_p2(ac, av, flags);
+    return 0;
+}
+
+static int error_handling_p2(int ac, char **av)
+{
+    if ((ac == 7 && !is_number(av[6])) || (ac == 9
+        && (!is_number(av[8]))))
+        return 84;
+    if (ac >= 5 && strcmp(av[3], "-b") != 0 && (strcmp(av[3], "-imin") != 0
+        && strcmp(av[3], "-imax") != 0))
+        return 84;
+    if (ac == 9 && strcmp(av[7], "-b") != 0 && (strcmp(av[7], "-imax") != 0
+        && strcmp(av[7], "-imin") != 0))
+        return 84;
     return 0;
 }
 
 int error_handling(int ac, char **av)
 {
-    if (ac == 4)
+    if (ac == 4 || ac == 6 || ac == 8)
         return 84;
     if (ac == 2 && (av[1][0] != '-' || av[1][1] != 'h'))
         return 84;
-    if (ac > 2 && ac <= 6 && (av[1][0] != '-' ||
+    if (ac > 2 && (av[1][0] != '-' ||
         (av[1][1] != 'n' && av[1][1] != 'p')))
         return 84;
     if (ac >= 5 && (!is_number(av[2]) || !is_number(av[4])))
         return 84;
-    if (ac == 6)
+    if (ac >= 7 && (strcmp(av[5], "-imax") != 0
+        && strcmp(av[5], "-imin") != 0))
         return 84;
-    if (ac == 7 && (strcmp(av[5], "-imax") != 0 && strcmp(av[5], "-imin")))
-        return 84;
-    if (ac == 7 && !is_number(av[6]))
+    if (error_handling_p2(ac, av) == 84)
         return 84;
     return 0;
 }
