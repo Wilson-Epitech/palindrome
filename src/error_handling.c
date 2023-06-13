@@ -18,6 +18,10 @@ int parse_args(int ac, char * const *av, structure_t *flags)
         flags->flag_p = true;
     if (ac > 3 && is_number(av[4]) && strcmp(av[3], "-b") == 0)
         flags->base = atoi(av[4]);
+    if (ac == 5 && strcmp(av[3], "-imin") == 0)
+        flags->imin = atoi(av[4]);
+    if (ac == 5 && strcmp(av[3], "-imax") == 0)
+        flags->imax = atoi(av[4]);
     if (ac == 7 && strcmp(av[5], "-imin") == 0 && is_number(av[6]))
         flags->imin = atoi(av[6]);
     if (ac == 7 && strcmp(av[5], "-imax") == 0 && is_number(av[6]))

@@ -11,6 +11,7 @@ SRC	=	src/main.c 										\
 		src/palindromic_correspondances.c				\
 		src/error_handling.c							\
 		src/lib/my_revstr.c								\
+		src/lib/convert_binary_decimal.c				\
 		src/lib/my_int_to_str.c							\
 		src/lib/is_number.c								\
 		src/is_palindrome.c							\
