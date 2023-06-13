@@ -17,6 +17,10 @@ static int convert_loop(structure_t *flags, int nb)
         nb = convert_binary_decimal(nb, 2);
     if (flags->base == 5)
         nb = convert_binary_decimal(nb, 5);
+    if (flags->base == 8)
+        nb = convert_binary_decimal(nb, 8);
+    if (flags->base == 3)
+        nb = convert_binary_decimal(nb, 3);
     return nb;
 }
 
