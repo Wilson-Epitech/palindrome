@@ -33,11 +33,3 @@ int my_squareroot_synthesis(int nb)
         return -1;
     return x;
 }
-
-int main(void)
-{
-    int nb = 9  ;
-
-    printf("%d\n", my_squareroot_synthesis(nb));
-    return 0;
-}
