@@ -21,7 +21,7 @@ int my_squareroot_synthesis(int nb)
     int x = nb;
     float y = 1;
 
-    if (nb < 0 || nb > 42)
+    if (nb < 0 || nb > 46000)
         return -1;
     if (nb == 0 || nb == 1)
         return x;

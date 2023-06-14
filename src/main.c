@@ -44,6 +44,17 @@ int flag_h(int ac, char **av)
     return 0;
 }
 
+int error_handling_2(int ac, char **av, structure_t *flags)
+{
+    if (flags->base > 10 || flags->base < 2)
+        return 84;
+    if (flags->imin >= flags->imax)
+        return 84;
+    if (flags->flag_p && is_palindrome(av[2]))
+        return 84;
+    return 0;
+}
+
 int main(int ac, char **av)
 {
     structure_t *flags = init_struct();
@@ -56,9 +67,7 @@ int main(int ac, char **av)
     if (flag_h(ac, av) == 1)
         return 0;
     parse_args(ac, av, flags);
-    if (flags->base > 10 || flags->base < 2)
-        return 84;
-    if (flags->imin >= flags->imax)
+    if (error_handling_2(ac, av, flags) == 84)
         return 84;
     if (flags->flag_n) {
         if (find_first_palindrome(av[2], flags) == 0)
