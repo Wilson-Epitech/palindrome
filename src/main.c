@@ -53,16 +53,17 @@ int main(int ac, char **av)
         printf("invalid argument\n");
         return 84;
     }
-    if (flags->imin >= flags->imax)
-        return 84;
     if (flag_h(ac, av) == 1)
         return 0;
     parse_args(ac, av, flags);
+    if (flags->base > 10 || flags->base < 2)
+        return 84;
+    if (flags->imin >= flags->imax)
+        return 84;
     if (flags->flag_n) {
         if (find_first_palindrome(av[2], flags) == 0)
             printf("no solution\n");
-    } else {
+    } else
         palindromic_correspondances(av[2], flags);
-    }
     return 0;
 }

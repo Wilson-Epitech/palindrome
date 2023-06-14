@@ -24,6 +24,8 @@ static void parse_args_p2(int ac, char * const *av, structure_t *flags)
         flags->imax = atoi(av[8]);
     if (ac == 9 && is_number(av[8]))
         flags->base = atoi(av[8]);
+    if (ac == 9 && strcmp(av[3], "-b") == 0 && is_number(av[4]))
+        flags->base = atoi(av[4]);
 }
 
 int parse_args(int ac, char * const *av, structure_t *flags)
