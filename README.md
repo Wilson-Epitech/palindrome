@@ -14,7 +14,7 @@
 
 <p align="center"><img src=".github/assets/term-palindrome.png" alt="Palindrome" width="820"/></p>
 
-## En deux mots
+## Le projet en quelques mots
 
 On prend un nombre, on lui ajoute son miroir (4782 + 2874), et on recommence jusqu'à tomber sur un palindrome. Le programme fait le calcul dans les deux sens : trouver le palindrome d'un nombre, ou tous les nombres qui mènent à un palindrome donné.
 
@@ -24,10 +24,6 @@ On prend un nombre, on lui ajoute son miroir (4782 + 2874), et on recommence jus
 - `-p` : tous les nombres qui mènent à un palindrome donné
 - Bornes d'itérations `-imin` / `-imax`
 - Gestion d'erreurs stricte des arguments
-
-## Sous le capot
-
-À chaque itération, on retourne les chiffres du nombre, on les additionne au nombre et on teste si le résultat se lit pareil dans les deux sens.
 
 ## Lancer le projet
 
